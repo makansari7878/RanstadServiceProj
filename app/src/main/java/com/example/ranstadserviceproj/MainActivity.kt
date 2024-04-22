@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
+import com.example.ranstadserviceproj.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,7 +22,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        var mainxml : ActivityMainBinding  = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        mainxml.buttonNot.setOnClickListener {
+            var uname = MyDataClass("Ansari", "abc")
+            mainxml.myusername = uname
+        }
+
+
+
+
+
+
+
+
+        /*setContentView(R.layout.activity_main)
         createNotificationChannel()
 
         val notficationButton = findViewById<Button>(R.id.buttonNot)
@@ -30,9 +47,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Check SMS permission when activity is created
-        checkSMSPermission()
+        checkSMSPermission()*/
     }
-
+    /*
     private fun checkSMSPermission() {
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -96,106 +113,108 @@ class MainActivity : AppCompatActivity() {
     private fun createNotificationChannel() {
         // Create notification channel if needed
     }
+}*/
+
+    /* fun createNotificationChannel() {
+        // Create the NotificationChannel only on API 26+ because the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            // Check if the channel exists
+            val existingChannel = notificationManager.getNotificationChannel(CHANNEL_ID)
+            if (existingChannel == null) {
+                val name = CHANNEL_NAME
+                val descriptionText = "Simple Notification Example"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                    description = descriptionText
+                }
+                // Register the channel with the system
+                notificationManager.createNotificationChannel(channel)
+            }
+        }
+    }
+
+     fun showNotification() {
+
+        val intent = Intent(this, DetailsActivity::class.java)
+
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_IMMUTABLE)
+
+
+        // Build notification
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.koc1)
+            .setContentTitle("Ansari Notification")
+            .setContentText("This is a ansari notification message.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            //.setAutoCancel(true)
+            .build()
+
+        // Show notification
+        val notificationManager = NotificationManagerCompat.from(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        notificationManager.notify(1, notification)
+    }*/
+
+    /* fun createNotificationChannel() {
+        // Create the NotificationChannel only on API 26+ because the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            // Check if the channel exists
+            val existingChannel = notificationManager.getNotificationChannel(CHANNEL_ID)
+            if (existingChannel == null) {
+                val name = CHANNEL_NAME
+                val descriptionText = "Simple Notification Example"
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                    description = descriptionText
+                }
+                // Register the channel with the system
+                notificationManager.createNotificationChannel(channel)
+            }
+        }
+    }
+
+     fun showNotification() {
+
+        val intent = Intent(this, DetailsActivity::class.java)
+
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_IMMUTABLE)
+
+
+        // Build notification
+        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.koc1)
+            .setContentTitle("Ansari Notification")
+            .setContentText("This is a ansari notification message.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            //.setAutoCancel(true)
+            .build()
+
+        // Show notification
+        val notificationManager = NotificationManagerCompat.from(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+
+        notificationManager.notify(1, notification)
+    }*/
+
 }
-
-/* fun createNotificationChannel() {
-        // Create the NotificationChannel only on API 26+ because the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            // Check if the channel exists
-            val existingChannel = notificationManager.getNotificationChannel(CHANNEL_ID)
-            if (existingChannel == null) {
-                val name = CHANNEL_NAME
-                val descriptionText = "Simple Notification Example"
-                val importance = NotificationManager.IMPORTANCE_DEFAULT
-                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                    description = descriptionText
-                }
-                // Register the channel with the system
-                notificationManager.createNotificationChannel(channel)
-            }
-        }
-    }
-
-     fun showNotification() {
-
-        val intent = Intent(this, DetailsActivity::class.java)
-
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_IMMUTABLE)
-
-
-        // Build notification
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.koc1)
-            .setContentTitle("Ansari Notification")
-            .setContentText("This is a ansari notification message.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            //.setAutoCancel(true)
-            .build()
-
-        // Show notification
-        val notificationManager = NotificationManagerCompat.from(this)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-
-        notificationManager.notify(1, notification)
-    }*/
-
-/* fun createNotificationChannel() {
-        // Create the NotificationChannel only on API 26+ because the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            // Check if the channel exists
-            val existingChannel = notificationManager.getNotificationChannel(CHANNEL_ID)
-            if (existingChannel == null) {
-                val name = CHANNEL_NAME
-                val descriptionText = "Simple Notification Example"
-                val importance = NotificationManager.IMPORTANCE_DEFAULT
-                val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                    description = descriptionText
-                }
-                // Register the channel with the system
-                notificationManager.createNotificationChannel(channel)
-            }
-        }
-    }
-
-     fun showNotification() {
-
-        val intent = Intent(this, DetailsActivity::class.java)
-
-        val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_IMMUTABLE)
-
-
-        // Build notification
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.koc1)
-            .setContentTitle("Ansari Notification")
-            .setContentText("This is a ansari notification message.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(pendingIntent)
-            //.setAutoCancel(true)
-            .build()
-
-        // Show notification
-        val notificationManager = NotificationManagerCompat.from(this)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-
-        notificationManager.notify(1, notification)
-    }*/

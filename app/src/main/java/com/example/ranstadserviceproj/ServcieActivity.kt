@@ -1,5 +1,6 @@
 package com.example.ranstadserviceproj
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +15,10 @@ class ServcieActivity : AppCompatActivity() {
         var stopButton  = findViewById<Button>(R.id.buttonStop)
 
         startButton.setOnClickListener {
-            var myIntent = Intent(this, MyService::class.java)
+           /* var myIntent = Intent(this, MyService::class.java)
+            startService(myIntent)*/
+
+            var myIntent = Intent(this, MyForegroundService::class.java)
             startService(myIntent)
         }
 
