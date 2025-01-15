@@ -10,6 +10,8 @@ import androidx.room.Query
 interface MyDAOInterface {
    @Insert (onConflict = OnConflictStrategy.IGNORE)
    fun saveData(myEntity : MyEntity)
+
+
    @Query("select * from MyEntity")
    fun readData() : List<MyEntity>
 

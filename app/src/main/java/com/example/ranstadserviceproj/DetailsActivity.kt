@@ -23,7 +23,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details)
 
 
-        var submitBtton = findViewById<Button>(R.id.buttonSubmit)
+        var showBtton = findViewById<Button>(R.id.buttonSubmit)
         var usernameEditText = findViewById<EditText>(R.id.editTextUsername)
         var ageEditText = findViewById<EditText>(R.id.editTextAge)
         var saveButton = findViewById<Button>(R.id.buttonSave)
@@ -54,7 +54,7 @@ class DetailsActivity : AppCompatActivity() {
 
 
 
-            submitBtton.setOnClickListener {
+        showBtton.setOnClickListener {
 
                 thread {
 
