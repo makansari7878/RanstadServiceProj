@@ -53,7 +53,7 @@ class DetailsActivity : AppCompatActivity() {
 
 
 
-
+//est
         showBtton.setOnClickListener {
 
                 thread {
